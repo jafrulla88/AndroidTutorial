@@ -13,6 +13,8 @@ class Members {
     var last_name : String? = null
     @SerializedName("jersey_number")
     var jersey_number : String? = null
+    @SerializedName("headshot")
+    var headshot : Headshot? = null
 
 
 }

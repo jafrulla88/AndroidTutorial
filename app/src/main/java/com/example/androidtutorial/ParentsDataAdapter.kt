@@ -1,5 +1,6 @@
 package com.example.androidtutorial
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.RecycledViewPool
 
-class ParentsDataAdapter(parentList: ArrayList<ParentData>, childList: ArrayList<Members>) :
+class ParentsDataAdapter(parentList: ArrayList<ParentData>, sampleActivity: SampleActivity) :
     RecyclerView.Adapter<ParentsDataAdapter.ParentViewHolder>() {
     // An object of RecyclerView.RecycledViewPool
     // is created to share the Views
@@ -17,7 +18,8 @@ class ParentsDataAdapter(parentList: ArrayList<ParentData>, childList: ArrayList
     private val viewPool = RecycledViewPool()
     private val itemList: List<ParentItem>? = null
     private var itemList1: ArrayList<ParentData> = ArrayList()
-    private var childList: ArrayList<Members> = ArrayList()
+    private var childList: ArrayList<String> = ArrayList()
+    private var context :Context?=null
 
     /*ParentItemAdapter(List<ParentItem> itemList)
     {
@@ -48,6 +50,7 @@ class ParentsDataAdapter(parentList: ArrayList<ParentData>, childList: ArrayList
         // Create an instance of the ParentItem
         // class for the given position
         val parentItem = itemList1!![position]
+       // val childItem =childList!![position]
 
         // For the created instance,
         // get the title and set it
@@ -72,12 +75,12 @@ class ParentsDataAdapter(parentList: ArrayList<ParentData>, childList: ArrayList
         // child RecyclerView is nested
         // inside the parent RecyclerView,
         // we use the following method
-        layoutManager.initialPrefetchItemCount = parentItem.members.size
+        layoutManager.initialPrefetchItemCount = itemList1.size
 
         // Create an instance of the child
         // item view adapter and set its
         // adapter, layout manager and RecyclerViewPool
-        val membersAdapter = MembersAdapter(parentItem.members)
+        val membersAdapter = MembersAdapter(itemList1,context)
         parentViewHolder.ChildRecyclerView.layoutManager = layoutManager
         parentViewHolder.ChildRecyclerView.adapter = membersAdapter
         parentViewHolder.ChildRecyclerView.setRecycledViewPool(viewPool)
@@ -118,5 +121,6 @@ class ParentsDataAdapter(parentList: ArrayList<ParentData>, childList: ArrayList
     init {
         this.itemList1 = parentList
         this.childList =childList
+        this.context=sampleActivity
     }
 }

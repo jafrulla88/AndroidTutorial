@@ -1,15 +1,22 @@
 package com.example.androidtutorial
 
+import android.app.Activity
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 
 class MembersAdapter  // Constructor
-  constructor(private var ChildItemList: ArrayList<Members>) :
+    (private var ChildItemList: ArrayList<ParentData>, context: Context?) :
     RecyclerView.Adapter<MembersAdapter.ChildViewHolder>() {
-    private var childList: ArrayList<Members> = ArrayList()
+    private var childList: ArrayList<ParentData> = ArrayList()
+    private var context:Context?=null
+
     override fun onCreateViewHolder(
         viewGroup: ViewGroup,
         i: Int
@@ -40,9 +47,16 @@ class MembersAdapter  // Constructor
         // the ImageViews because we have
         // provided the source for the images
         // in the layout file itself
-        childViewHolder.textjersy.text = childItem.name
-        childViewHolder.textfname.text = childItem.first_name
-        childViewHolder.textlname.text = childItem.last_name
+        childViewHolder.textfname.text = childItem.membersnew!!.first_name
+        childViewHolder.textlname.text = childItem.membersnew!!.last_name
+        childViewHolder.textjersy.text = childItem.membersnew!!.jersey_number
+         /*var options: RequestOptions = RequestOptions()
+            .centerCrop()
+            .placeholder(R.mipmap.ic_launcher_round)
+            .error(R.mipmap.ic_launcher_round);
+        Glide.with(context!!).load(childItem.headshot!!.original).apply(options)
+            .into(childViewHolder.imageview)*/
+
     }
 
     override fun getItemCount(): Int {
@@ -53,7 +67,7 @@ class MembersAdapter  // Constructor
         // i.e. the number of instances
         // of the ChildItemList
         // that have been created
-        return ChildItemList.size
+        return childList.size
     }
 
     // This class is to initialize
@@ -64,16 +78,17 @@ class MembersAdapter  // Constructor
         var textjersy: TextView
         var textfname:TextView
         var textlname:TextView
+        var imageview:ImageView
 
         init {
-            textjersy = itemView.findViewById(
-                R.id.child_item_jersy
-            )
+            textjersy = itemView.findViewById(R.id.child_item_jersy)
             textfname=itemView.findViewById(R.id.child_item_fname)
             textlname=itemView.findViewById(R.id.child_item_lname)
+            imageview=itemView.findViewById(R.id.img_child_item)
         }
     }
     init {
-        this.ChildItemList = childList
+        this.childList = ChildItemList
+        this.context=context
      }
 }

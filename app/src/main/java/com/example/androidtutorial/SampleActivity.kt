@@ -23,7 +23,11 @@ class SampleActivity :AppCompatActivity() {
     var URLS1 = "https://dummyjson.com"
     private var parentList: ArrayList<ParentData> = ArrayList()
         var childList:ArrayList<Members> = ArrayList()
+    var midfileder:ArrayList<String> = ArrayList()
+
+
     private var recyclerView:RecyclerView?=null
+    var parentData :ParentData?=null
 
 
 
@@ -131,24 +135,50 @@ class SampleActivity :AppCompatActivity() {
                 Log.e("Response", response!!)
              //   Log.e("Response1", response1!!)
                 if (response != null && response.length > 0) {
+
                     try {
                         val jsonarray = JSONArray(response)
+
                         for (i in 0 until jsonarray.length()) {
+                            var members=Members()
+                            var headshotnew=Headshot()
                             val jsonobject: JSONObject = jsonarray.getJSONObject(i)
                             val position = jsonobject.getString("position")
-                          //  Log.e("position",position)
-                            val parentData = ParentData()
-                            parentData.position=position
-                            parentList.add(parentData)
-                            val subName = "Midfielder"
+                            val fname = jsonobject.getString("first_name")
+                            val lname = jsonobject.getString("last_name")
+                            val jersy =jsonobject.getString("jersey_number")
+                            /*val headshot =jsonobject.getString("headshot")
+                            if(headshot!==null) {
+                                val jsonobject1 = JSONObject(headshot)
+                                val original = jsonobject1.getString("original")
+                                if (original !== null) {
+*/
+                                    parentData = ParentData()
+
+                                    members.first_name = fname
+                                    members.last_name = lname
+                                    members.jersey_number = jersy
+
+                                  //  headshotnew!!.original = original
+                                    parentData!!.position = position
+                                    parentData = ParentData(position,members)
+                                    parentList.add(parentData!!)
+                            //    }
+                          //  }
+                                /* val subName = "Midfielder"
                             val groupJsonWithSubName = JSONArray()
                             if (jsonobject.getString("position") == subName) {
-                                groupJsonWithSubName.put(jsonobject)
-                                Log.e("group",groupJsonWithSubName.toString())
+                               *//* groupJsonWithSubName.put(jsonobject)
+                                Log.e("group",groupJsonWithSubName.toString())*//*
+
+                                midfileder.add(fname);
                             }
+                            Log.e("jsondata", midfileder.toString())
+                            parentData!!.first_name=midfileder.toString()
+                            parentList.add(parentData!!)*/
 
 
-                            for (i in 0 until groupJsonWithSubName.length()) {
+                                /* for (i in 0 until groupJsonWithSubName.length()) {
                                 val jsonObject2 = groupJsonWithSubName.getJSONObject(i)
                                 val fname = jsonObject2.getString("first_name")
                                 val lname = jsonObject2.getString("last_name")
@@ -157,17 +187,22 @@ class SampleActivity :AppCompatActivity() {
                                 members.first_name=fname
                                 members.last_name=lname
                                 members.jersey_number=jersy
-
+                                parentData.members=childList
+                                parentList.add(parentData)
                                 childList.add(members)
 
-                            }
-                            val layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,
-                                false)
-                            val parentItemAdapter = ParentsDataAdapter(parentList,childList)
+                                
+                            }*/
+                                val layoutManager = LinearLayoutManager(
+                                    this, LinearLayoutManager.VERTICAL,
+                                    false
+                                )
+                                val parentItemAdapter = ParentsDataAdapter(parentList,this)
 
-                            recyclerView?.setAdapter(parentItemAdapter)
-                            recyclerView?.setLayoutManager(layoutManager)
-                            parentItemAdapter.notifyDataSetChanged()
+                                recyclerView?.setAdapter(parentItemAdapter)
+                                recyclerView?.setLayoutManager(layoutManager)
+                                parentItemAdapter.notifyDataSetChanged()
+
 
                         }
 
