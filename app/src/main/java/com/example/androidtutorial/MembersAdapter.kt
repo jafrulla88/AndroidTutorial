@@ -12,9 +12,9 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
 class MembersAdapter  // Constructor
-    (private var ChildItemList: ArrayList<ParentData>, context: Context?) :
+    (private var ChildItemList: ArrayList<Members>, context: Context?) :
     RecyclerView.Adapter<MembersAdapter.ChildViewHolder>() {
-    private var childList: ArrayList<ParentData> = ArrayList()
+    private var childList: ArrayList<Members> = ArrayList()
     private var context:Context?=null
 
     override fun onCreateViewHolder(
@@ -47,9 +47,9 @@ class MembersAdapter  // Constructor
         // the ImageViews because we have
         // provided the source for the images
         // in the layout file itself
-        childViewHolder.textfname.text = childItem.membersnew!!.first_name
-        childViewHolder.textlname.text = childItem.membersnew!!.last_name
-        childViewHolder.textjersy.text = childItem.membersnew!!.jersey_number
+        childViewHolder.textfname.text = childItem.first_name
+        childViewHolder.textlname.text = childItem!!.last_name
+        childViewHolder.textjersy.text = childItem.jersey_number
          /*var options: RequestOptions = RequestOptions()
             .centerCrop()
             .placeholder(R.mipmap.ic_launcher_round)

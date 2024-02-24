@@ -75,12 +75,12 @@ class ParentsDataAdapter(parentList: ArrayList<ParentData>, sampleActivity: Samp
         // child RecyclerView is nested
         // inside the parent RecyclerView,
         // we use the following method
-        layoutManager.initialPrefetchItemCount = itemList1.size
+        layoutManager.initialPrefetchItemCount = parentItem.membersnew!!.memberslist.size
 
         // Create an instance of the child
         // item view adapter and set its
         // adapter, layout manager and RecyclerViewPool
-        val membersAdapter = MembersAdapter(itemList1,context)
+        val membersAdapter = MembersAdapter(parentItem.membersnew!!.memberslist,context)
         parentViewHolder.ChildRecyclerView.layoutManager = layoutManager
         parentViewHolder.ChildRecyclerView.adapter = membersAdapter
         parentViewHolder.ChildRecyclerView.setRecycledViewPool(viewPool)

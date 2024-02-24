@@ -22,7 +22,7 @@ class SampleActivity :AppCompatActivity() {
     var URLS = "https://eos-api.mlsdigital.net/v1/www.fcdallas.com/players?club_opta_id=1903&player_status=active&token=AcQ5w0M67d9TKwbg"
     var URLS1 = "https://dummyjson.com"
     private var parentList: ArrayList<ParentData> = ArrayList()
-        var childList:ArrayList<Members> = ArrayList()
+    var childList:ArrayList<Members> = ArrayList()
     var midfileder:ArrayList<String> = ArrayList()
 
 
@@ -158,6 +158,7 @@ class SampleActivity :AppCompatActivity() {
                                     members.first_name = fname
                                     members.last_name = lname
                                     members.jersey_number = jersy
+                                    members.memberslist.add(members)
 
                                   //  headshotnew!!.original = original
                                     parentData!!.position = position

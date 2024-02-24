@@ -15,6 +15,7 @@ class Members {
     var jersey_number : String? = null
     @SerializedName("headshot")
     var headshot : Headshot? = null
+    var memberslist : ArrayList<Members> = arrayListOf()
 
 
 }

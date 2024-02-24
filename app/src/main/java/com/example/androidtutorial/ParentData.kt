@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName
     constructor( position:String, membersnew:Members) : this() {
       this.membersnew=membersnew
       this.position=position
+      this.memberslist=memberslist
      }
       @SerializedName("first_name")
       var slug    : String?  = null
@@ -13,8 +14,8 @@ import com.google.gson.annotations.SerializedName
       var name    : String?  = null
       @SerializedName("position")
       var position    : String?  = null
-      @SerializedName("position")
-      var members : ArrayList<Members> = arrayListOf()
+     /* @SerializedName("position")
+      var members : ArrayList<Members> = arrayListOf()*/
       @SerializedName("first_name")
       var first_name    : String?  = null
       @SerializedName("last_name")
@@ -25,6 +26,7 @@ import com.google.gson.annotations.SerializedName
       var headshot :Headshot?=null
 
       var membersnew:Members?=null
+      var memberslist : ArrayList<Members> = arrayListOf()
 
 
 
