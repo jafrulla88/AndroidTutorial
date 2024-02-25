@@ -9,7 +9,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.RecycledViewPool
 
-class ParentsDataAdapter(parentList: ArrayList<ParentData>, sampleActivity: SampleActivity) :
+class ParentsDataAdapter(
+    parentList: ArrayList<ParentData>?,
+     sampleActivity: SampleActivity
+) :
     RecyclerView.Adapter<ParentsDataAdapter.ParentViewHolder>() {
     // An object of RecyclerView.RecycledViewPool
     // is created to share the Views
@@ -18,8 +21,7 @@ class ParentsDataAdapter(parentList: ArrayList<ParentData>, sampleActivity: Samp
     private val viewPool = RecycledViewPool()
     private val itemList: List<ParentItem>? = null
     private var itemList1: ArrayList<ParentData> = ArrayList()
-    private var childList: ArrayList<String> = ArrayList()
-    private var context :Context?=null
+     private var context :Context?=null
 
     /*ParentItemAdapter(List<ParentItem> itemList)
     {
@@ -50,7 +52,7 @@ class ParentsDataAdapter(parentList: ArrayList<ParentData>, sampleActivity: Samp
         // Create an instance of the ParentItem
         // class for the given position
         val parentItem = itemList1!![position]
-       // val childItem =childList!![position]
+      //  val childItem =childList!![position]
 
         // For the created instance,
         // get the title and set it
@@ -75,12 +77,15 @@ class ParentsDataAdapter(parentList: ArrayList<ParentData>, sampleActivity: Samp
         // child RecyclerView is nested
         // inside the parent RecyclerView,
         // we use the following method
-        layoutManager.initialPrefetchItemCount = parentItem.membersnew!!.memberslist.size
+
+
+
+        layoutManager.initialPrefetchItemCount = parentItem.memberslist.size
 
         // Create an instance of the child
         // item view adapter and set its
         // adapter, layout manager and RecyclerViewPool
-        val membersAdapter = MembersAdapter(parentItem.membersnew!!.memberslist,context)
+        val membersAdapter = MembersAdapter(parentItem.memberslist,context)
         parentViewHolder.ChildRecyclerView.layoutManager = layoutManager
         parentViewHolder.ChildRecyclerView.adapter = membersAdapter
         parentViewHolder.ChildRecyclerView.setRecycledViewPool(viewPool)
@@ -119,8 +124,7 @@ class ParentsDataAdapter(parentList: ArrayList<ParentData>, sampleActivity: Samp
     }
 
     init {
-        this.itemList1 = parentList
-        this.childList =childList
-        this.context=sampleActivity
+        this.itemList1 = parentList!!
+         this.context=sampleActivity
     }
 }

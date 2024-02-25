@@ -3,11 +3,20 @@ package com.example.androidtutorial
 import com.google.gson.annotations.SerializedName
 
   class ParentData (){
-    constructor( position:String, membersnew:Members) : this() {
+    constructor( position:String, defenderlist:ArrayList<Defender>,fowradlist:ArrayList<Forward>) : this() {
       this.membersnew=membersnew
       this.position=position
-      this.memberslist=memberslist
+      this.defenderlist=defenderlist
+        this.fowradlist=fowradlist
      }
+      constructor( position:String, childlist:ArrayList<Members>) : this() {
+          this.membersnew=membersnew
+          this.position=position
+          this.memberslist=childlist
+          this.fowradlist=fowradlist
+      }
+
+
       @SerializedName("first_name")
       var slug    : String?  = null
       @SerializedName("name")
@@ -27,6 +36,8 @@ import com.google.gson.annotations.SerializedName
 
       var membersnew:Members?=null
       var memberslist : ArrayList<Members> = arrayListOf()
+      var defenderlist :ArrayList<Defender> =arrayListOf()
+      var fowradlist :ArrayList<Forward> =arrayListOf()
 
 
 

@@ -50,12 +50,12 @@ class MembersAdapter  // Constructor
         childViewHolder.textfname.text = childItem.first_name
         childViewHolder.textlname.text = childItem!!.last_name
         childViewHolder.textjersy.text = childItem.jersey_number
-         /*var options: RequestOptions = RequestOptions()
+         var options: RequestOptions = RequestOptions()
             .centerCrop()
             .placeholder(R.mipmap.ic_launcher_round)
             .error(R.mipmap.ic_launcher_round);
-        Glide.with(context!!).load(childItem.headshot!!.original).apply(options)
-            .into(childViewHolder.imageview)*/
+        Glide.with(context!!).load(childItem.original).apply(options)
+            .into(childViewHolder.imageview)
 
     }
 
